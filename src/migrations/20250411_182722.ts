@@ -1,6 +1,6 @@
 import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
-export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
+export async function up({ payload }: MigrateUpArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
    CREATE TABLE IF NOT EXISTS "haus-grieta"."users" (
   	"id" serial PRIMARY KEY NOT NULL,
@@ -387,7 +387,7 @@ export async function up({ payload, req }: MigrateUpArgs): Promise<void> {
   CREATE INDEX IF NOT EXISTS "footer_items_page_idx" ON "haus-grieta"."footer_items" USING btree ("page_id");`)
 }
 
-export async function down({ payload, req }: MigrateDownArgs): Promise<void> {
+export async function down({ payload }: MigrateDownArgs): Promise<void> {
   await payload.db.drizzle.execute(sql`
    DROP TABLE "haus-grieta"."users" CASCADE;
   DROP TABLE "haus-grieta"."media" CASCADE;
