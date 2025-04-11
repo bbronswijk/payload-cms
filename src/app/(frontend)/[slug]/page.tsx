@@ -8,6 +8,7 @@ import { Testimonials } from '@/blocks/Testimonials'
 import { CallToAction } from '@/blocks/CallToAction'
 import { Header } from '@/layout/Header'
 import { Footer } from '@/layout/Footer'
+import { notFound } from 'next/navigation'
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug = 'home' } = await params
@@ -20,7 +21,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   })
 
   if (!page) {
-    return null
+    return notFound()
   }
 
   return (
